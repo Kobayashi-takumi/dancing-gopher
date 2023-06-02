@@ -9,14 +9,14 @@ use crossterm::{
 };
 use ratatui::{
     backend::CrosstermBackend,
-    layout::Rect,
+    style::{Color, Style},
+    text::Span,
     widgets::{
         canvas::{Canvas, Rectangle},
         Block, Borders,
     },
     Terminal,
 };
-use std::rc::Rc;
 use std::{
     io,
     time::{Duration, Instant},
@@ -67,6 +67,11 @@ fn run(
                             });
                         })
                     });
+                    ctx.print(
+                        app.x + 22.0,
+                        app.y - 1.0,
+                        Span::styled(app.text.clone(), Style::default().fg(Color::Yellow)),
+                    );
                 });
             frame.render_widget(item, frame.size());
         })?;

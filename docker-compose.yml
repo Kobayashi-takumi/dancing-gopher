@@ -10,7 +10,6 @@ services:
       - ./:/app:cache
       - rust-target:/app/target
       - cargo-cache:/usr/local/cargo/registry
-    # command: sh -c "cargo watch -x run"
 volumes:
   cargo-cache:
   rust-target:

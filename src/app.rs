@@ -4,13 +4,21 @@ use rand::seq::SliceRandom;
 pub struct App {
     pub x: f64,
     pub y: f64,
+    pub text: String,
+    pub counter: i64,
 }
 
 impl App {
     const NUM: [f64; 2] = [10.0, 20.0];
     const X: [f64; 2] = [1.0, -1.0];
+    const VOCABULARY: [&str; 3] = ["> I'm Gopher!", "> Hi!", "> I love Golang!"];
     pub fn new(x: f64, y: f64) -> App {
-        App { x, y }
+        App {
+            x,
+            y,
+            text: Self::VOCABULARY[0].to_string(),
+            counter: 0,
+        }
     }
     pub fn right(&mut self) {
         self.x += 3.0;
@@ -36,7 +44,15 @@ impl App {
     }
     pub fn moving(&mut self) {
         self.dash();
-        // self.jump();
         self.fall();
+        self.speak();
+    }
+    pub fn speak(&mut self) {
+        if self.counter >= 10 {
+            let text = *Self::VOCABULARY.choose(&mut rand::thread_rng()).unwrap();
+            self.text = text.to_string();
+            self.counter = 0;
+        }
+        self.counter += 1;
     }
 }
