@@ -52,8 +52,8 @@ fn run(
                         .title("ダンシング・ゴーファー")
                         .borders(Borders::ALL),
                 )
-                .x_bounds([-180.0, 180.0])
-                .y_bounds([-90.0, 90.0])
+                .x_bounds([-90.0, 90.0])
+                .y_bounds([-45.0, 45.0])
                 .paint(|ctx| {
                     ctx.layer();
                     gopher().into_iter().for_each(|r| {
